@@ -18,73 +18,77 @@ namespace Dsw2026Ej11.Collections;
  */
 public class CasoLinq
 {
-    //1. Obtener el primer libro (GetPrimero)
-    public Libro? GetPrimero(List<Libro> libros)
+    List<Libro> listaLibros = Libro.CrearLista();
+
+    //1. Obtener el primer libro (GetPrimero)  
+    public Libro? GetPrimero()
     {
-        return (from l in libros select l).FirstOrDefault();
+        return listaLibros.FirstOrDefault();
     }
 
     //2. Obtener el último libro (GetUltimo)
-    public Libro? GetUltimo(List<Libro> libros)
+    public Libro? GetUltimo()
     {
-        return (from l in libros select l).LastOrDefault();
+        return listaLibros.LastOrDefault();
     }
 
     //3. Obtener la suma de precios (GetTotalPrecios)
-    public decimal GetTotalPrecios(List<Libro> libros)
+    public decimal GetTotalPrecios()
     {
-        return (from l in libros select l.Precio).Sum();
+        IEnumerable<decimal> preciosSuma = listaLibros.Select(libro => libro.Precio);
+        return preciosSuma.Sum();
     }
 
     //4. Obtener el promedio de precios (GetPromedioPrecios)
-    public decimal GetPromedioPrecios(List<Libro> libros)
+    public decimal GetPromedioPrecios()
     {
-        return (from l in libros select l.Precio).Average();
+        IEnumerable<decimal> precios = listaLibros.Select(libro => libro.Precio);
+        return precios.Average();
     }
 
     //5. Obtener la lista de libros con Id mayor a 15 (GetListById)
-    public List<Libro>? GetListById(List<Libro> libros)
+    public List<Libro>? GetListById()
     {
-        var consulta = from l in libros where l.Id > 15 select l;
-        return consulta.ToList(); //obligo a que se haga lista
+        IEnumerable<Libro> libros = listaLibros.Where(libro => libro.Id > 15);
+        return libros.ToList(); //obligo a que se haga lista
     }
 
     //6. Obtener una lista de cada libro con su título y precio en formato moneda (GetLibros) (debe retornar una lista de string)
-    public List<string> GetLibros(List<Libro> libros)
+    public List<string> GetLibros()
     {
-        var consulta = from l in libros select $" - {l.Titulo} | {l.Precio:C}";
-        return consulta.ToList();
+        IEnumerable<string> libros = listaLibros.Select(libro => $" - {libro.Titulo} | {libro.Precio:C}"); 
+        return libros.ToList();
     }
 
     //7. Obtener el libro con el precio más alto(GetMayorPrecio)
-    public Libro? GetMayorPrecio(List<Libro> libros)
+    public Libro? GetMayorPrecio()
     {
-        decimal precioMax = (from l in libros select l.Precio).Max();
-        var consulta =  from l in libros where l.Precio == precioMax select l;
-        return consulta.FirstOrDefault();
+        decimal precioMax = listaLibros.Max(libro => libro.Precio);
+        IEnumerable<Libro> libro = listaLibros.Where(libro => libro.Precio == precioMax);
+        return libro.FirstOrDefault();
     }
 
     //8. Obtener el libro con el precio más bajo(GetMenorPrecio)
-    public Libro? GetMenorPrecio(List<Libro> libros)
+    public Libro? GetMenorPrecio()
     {
-        decimal precioMin = (from l in libros select l.Precio).Min();
-        var consulta = from l in libros where l.Precio == precioMin select l;
-        return consulta.FirstOrDefault();
+        decimal precioMin = listaLibros.Min(libro => libro.Precio);
+        IEnumerable<Libro> libro = listaLibros.Where(libro => libro.Precio == precioMin);
+        return libro.FirstOrDefault();
     }
 
     //9. Obtener los libros cuyo precio sea mayor al promedio (GetMayorPromedio)
-    public List<Libro> GetMayorPromedio(List<Libro> libros)
+    public List<Libro> GetMayorPromedio()
     {
-        decimal promedio = (from l in libros select l.Precio).Average();
-        var consulta = from l in libros where l.Precio > promedio select l;
-        return consulta.ToList();
+        decimal promedio = listaLibros.Average(prom => prom.Precio);
+        IEnumerable<Libro> librosMayorProm = listaLibros.Where(libro => libro.Precio > promedio);
+        return librosMayorProm.ToList();
     }
 
     //10. Obtener los libros ordenados por título de forma descendente
-    public List<Libro> LibrosOrdenDescendente(List<Libro> libros)
+    public List<Libro> LibrosOrdenDescendente()
     {
-        var consulta = from l in libros orderby l.Titulo descending select l;
-        return consulta.ToList();
+        IEnumerable<Libro> librosOrdenados = listaLibros.OrderByDescending(libro => libro.Titulo);
+        return librosOrdenados.ToList();
     }
 
 }

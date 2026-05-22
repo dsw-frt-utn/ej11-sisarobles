@@ -120,26 +120,24 @@ internal class Ejemplos
     {
         CasoLinq casoListaLibros = new CasoLinq();
 
-        List<Libro> listaLibros = Libro.CrearLista();
-
         //1
-        Libro? primerLibro = casoListaLibros.GetPrimero(listaLibros);
+        Libro? primerLibro = casoListaLibros.GetPrimero();
         Console.WriteLine($"El primer libro registrado es: {primerLibro?.Titulo} | Id: {primerLibro?.Id}\n");
 
         //2
-        Libro? ultimoLibro = casoListaLibros.GetUltimo(listaLibros);
+        Libro? ultimoLibro = casoListaLibros.GetUltimo();
         Console.WriteLine($"El último libro registrado es: {ultimoLibro?.Titulo} | Id: {ultimoLibro?.Id}\n");
 
         //3
-        decimal total = casoListaLibros.GetTotalPrecios(listaLibros);
+        decimal total = casoListaLibros.GetTotalPrecios();
         Console.WriteLine($"El total de los precios de los libros es de {total:C}\n");
 
         //4
-        decimal promedio = casoListaLibros.GetPromedioPrecios(listaLibros);
+        decimal promedio = casoListaLibros.GetPromedioPrecios();
         Console.WriteLine($"El promedio de los precios de los libros es de {promedio:C}\n");
 
         //5
-        List<Libro>? listabyId = casoListaLibros.GetListById(listaLibros);
+        List<Libro>? listabyId = casoListaLibros.GetListById();
         Console.WriteLine("\n=== LISTA DE LIBROS CON Id MAYOR A 15 ===\n");
         foreach (Libro libro in listabyId)
         {
@@ -149,7 +147,7 @@ internal class Ejemplos
         Console.WriteLine("\n");
 
         //6
-        List<string> lista = casoListaLibros.GetLibros(listaLibros);
+        List<string> lista = casoListaLibros.GetLibros();
         Console.WriteLine("\n=== LISTA DE LIBROS CON TITULO Y PRECIO ===\n");
         foreach (string libro in lista)
         {
@@ -159,15 +157,15 @@ internal class Ejemplos
         Console.WriteLine("\n");
 
         //7
-        Libro? libroCaro = casoListaLibros.GetMayorPrecio(listaLibros);
+        Libro? libroCaro = casoListaLibros.GetMayorPrecio();
         Console.WriteLine($"El libro de mayor precio es: : {libroCaro?.Titulo} | Id: {libroCaro?.Id}\n");
 
         //8
-        Libro? libroBarato = casoListaLibros.GetMenorPrecio(listaLibros);
+        Libro? libroBarato = casoListaLibros.GetMenorPrecio();
         Console.WriteLine($"El libro de menor precio es: : {libroBarato?.Titulo} | Id: {libroBarato?.Id}\n");
 
         //9
-        List<Libro> listaMayorProm = casoListaLibros.GetMayorPromedio(listaLibros);
+        List<Libro> listaMayorProm = casoListaLibros.GetMayorPromedio();
         Console.WriteLine("\n=== LISTA DE LIBROS CON UN PRECIO MAYOR AL PROMEDIO ===\n");
         foreach (Libro libro in listaMayorProm)
         {
@@ -175,7 +173,7 @@ internal class Ejemplos
         }
 
         //10
-        List<Libro> listaOrdenDescendente = casoListaLibros.LibrosOrdenDescendente(listaLibros);
+        List<Libro> listaOrdenDescendente = casoListaLibros.LibrosOrdenDescendente();
         Console.WriteLine("\n=== LISTA DE LIBROS EN ORDEN DESCENDENTE SEGÚN SU TÍTULO ===\n");
         foreach (Libro libro in listaOrdenDescendente)
         {
