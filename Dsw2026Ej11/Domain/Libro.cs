@@ -1,4 +1,6 @@
-﻿namespace Dsw2026Ej11.Domain;
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace Dsw2026Ej11.Domain;
 
 public class Libro
 {
@@ -48,5 +50,10 @@ public class Libro
             new Libro(29, "Inteligencia Artificial", 78000),
             new Libro(30, "Cloud Computing", 62000)
         };
+    }
+
+    public override string ToString()
+    {
+        return $"{Id} - {Titulo} - Precio: {Precio}";
     }
 }
